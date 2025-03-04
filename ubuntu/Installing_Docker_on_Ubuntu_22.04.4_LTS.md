@@ -203,10 +203,14 @@ Feb 27 14:11:29 wilkes-evt systemd[1]: Started Docker Application Container Engi
 ```
 
 9. Avoid typing sudo whenever you run the docker command, add your username to the docker group.
-    1. Current user.\
+    1. Current login user.\
     `$ sudo usermod -aG docker ${USER}`
-    2. Other user.\
+    2. Other non-login user.\
     `$ sudo usermod -aG docker <username>`
+        1. If username is john.\
+        `$ sudo usermod -aG docker john`
+        2. If username is iris.\
+        `$ sudo usermod -aG docker iris`
 
 10. To apply the new group membership, log out of the server and back in.
 
