@@ -39,3 +39,6 @@ VirtualBox 6 isn't compatible with the new kernel.
 
 4. Install VirtualBox.\
 `$ sudo apt-get install virtualbox-7.1`
+
+## Reference
+[This link](<https://udhayakumarc.medium.com/installing-virtualbox-7-in-ubuntu-22-363193e5a691>)
