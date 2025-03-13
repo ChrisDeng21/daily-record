@@ -1,3 +1,5 @@
+# Git Hooks for Checking Code
+
 ## Created Date
 2025/03/07
 
@@ -21,6 +23,7 @@ UBUNTU_CODENAME=jammy
 $ uname -a
 Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
 ```
+
 ## Symptom
 None
 
@@ -31,20 +34,28 @@ None
 當 `git init` 指令替專案加入 Git 版本控制後，專案目錄底下會多出一個 .git 目錄，這個目錄用來存放 Git 設定與版本控制所需的檔案，它並不能被 `git add` 進 Git 倉庫中。為了程式碼靜態分析之目的，修改專案目錄裡的 `.git/hooks/pre-commit` 來達成。
 
 ### 安裝工具
-- git： `sudo apt install git`
-- vim： `sudo apt install vim`
-- cppcheck： `sudo apt install cppcheck`
+```shell
+sudo apt install git vim cppcheck
+```
 
 ### 範例演練
-1. 建立新專案加入版本控制，然後檢查 .git 目錄是否生成。\
-`$ mkdir GIT_TEST`\
-`$ cd GIT_TEST`\
-`$ git init`\
-`$ ls -a`
+1. 建立新專案加入版本控制，然後檢查 .git 目錄是否生成。
+```shell
+mkdir GIT_TEST
+```
+```shell
+cd GIT_TEST
+```
+```shell
+git init
+```
+```shell
+ls -a
+```
 ```console
-~$ mkdir GIT_TEST
-~$ cd GIT_TEST
-~/GIT_TEST$ git init
+$ mkdir GIT_TEST
+$ cd GIT_TEST
+$ git init
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
 hint: of your new repositories, which will suppress this warning, call:
@@ -56,12 +67,15 @@ hint: 'development'. The just-created branch can be renamed via this command:
 hint:
 hint:   git branch -m <name>
 Initialized empty Git repository in /home/chrisdeng/GIT_TEST/.git/
-~/GIT_TEST$ ls -a
+$ ls -a
 .  ..  .git
 ```
+
 2. 新增檔案 `.git/hooks/pre-commit`。範本參考： [git-pre-commit-cppcheck](<https://github.com/danmar/cppcheck/blob/main/tools/git-pre-commit-cppcheck>)。\
-**注意!!!** 下面內容與範本差異在 cppcheck 那行有新增 `--enable=all`。\
-`$ vim .git/hooks/pre-commit`
+**注意!!!** 下面內容與範本差異在 cppcheck 那行有新增 `--enable=all`。
+```shell
+vim .git/hooks/pre-commit
+```
 ```bash
 #!/bin/sh
 
@@ -113,11 +127,15 @@ fi
 exit 0
 ```
 
-3. 改成可執行權限。\
-`$ chmod 775 .git/hooks/pre-commit`
+3. 改成可執行權限。
+```shell
+chmod 775 .git/hooks/pre-commit
+```
 
-4. 新增錯誤檢查的檔案。\
-`$ vim err.c`
+4. 新增錯誤檢查的檔案。
+```shell
+vim err.c
+```
 ```c
 #include <stdio.h>
 
@@ -129,12 +147,16 @@ int main()
 }
 ```
 
-5. 提交檔案失敗。\
-`$ git add err.c`\
-`$ git commit -m "First commit"`
+5. 提交檔案失敗。
+```shell
+git add err.c
+```
+```shell
+git commit -m "First commit"
+```
 ```console
-~/GIT_TEST$ git add err.c
-~/GIT_TEST$ git commit -m "First commit"
+$ git add err.c
+$ git commit -m "First commit"
 Checking err.c ...
 err.c:5:9: style: Unused variable: i [unusedVariable]
     int i;
@@ -142,8 +164,10 @@ err.c:5:9: style: Unused variable: i [unusedVariable]
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 ```
 
-6. 按照提示把錯誤修正。\
-`$ vim err.c`
+6. 按照提示把錯誤修正。
+```shell
+vim err.c
+```
 ```c
 #include <stdio.h>
 
@@ -153,12 +177,16 @@ int main()
 }
 ```
 
-7. 再次提交檔案成功。\
-`$ git add err.c`\
-`$ git commit -m "First commit"`
+7. 再次提交檔案成功。
+```shell
+git add err.c
+```
+```shell
+git commit -m "First commit"
+```
 ```console
-~/GIT_TEST$ git add err.c
-~/GIT_TEST$ git commit -m "First commit"
+$ git add err.c
+$ git commit -m "First commit"
 Checking err.c ...
 nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
 
@@ -167,10 +195,12 @@ nofile:0:0: information: Cppcheck cannot find all the include files (use --check
  create mode 100644 err.c
 ```
 
-8. 確認提交是否成功。\
-`$ git log -p`
+8. 確認提交是否成功。
+```shell
+git log -p
+```
 ```console
-~/GIT_TEST$ git log -p
+$ git log -p
 commit ed2dc78e4f0bbe6ee2e93572f5cb82b88f91bd66 (HEAD -> master)
 Author: User <User@mail.com>
 Date:   Fri Mar 7 16:47:24 2025 +0800
@@ -192,12 +222,16 @@ index 0000000..c5d6809
 ```
 
 ### 延伸思考
-可以在 Git 中設定 `global hooks` 目錄，而不需要在每個專案中單獨配置。
-- `$ git config --global core.hooksPath /path/to/global/hooks`
+可以在 Git 中設定 `global hooks` 目錄，而不需要在每個專案中單獨配置。利用 Git 指令：
+```shell
+git config --global core.hooksPath /path/to/global/hooks
+```
 
-將 /path/to/global/hooks 替換為你希望存放 `global hooks` 的目錄路徑。
+> 將 /path/to/global/hooks 替換為你希望存放 `global hooks` 的目錄路徑。
 
-Git 會自動在所有專案中使用這個路徑下的 pre-commit。在任何 Git 專案中執行 `git commit`，該 pre-commit 都應該會被執行。如果個別專案需要自定義，可以在該專案的 .git/hooks 中配置自己的 pre-commit，這樣會覆蓋 `global hooks` 的 pre-commit。
+Git 會自動在所有專案中使用這個路徑下的 pre-commit。在任何 Git 專案中執行 `git commit`，該 pre-commit 都應該會被執行。
+
+如果個別專案需要自定義，可以在該專案的 `.git/hooks` 目錄中配置自己的 pre-commit，這樣會覆蓋 `global hooks` 的 pre-commit。
 
 ## Reference
 1. [什麼是 Git Hooks？為什麼它這麼萬能？](<https://yhtechnote.com/git-hooks/>)
