@@ -1,3 +1,5 @@
+# Installing Docker on Ubuntu 22.04.4 LTS
+
 ## Created Date
 2025/03/04
 
@@ -21,6 +23,7 @@ UBUNTU_CODENAME=jammy
 $ uname -a
 Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
 ```
+
 ## Symptom
 None
 
@@ -28,23 +31,35 @@ None
 None
 
 ## Solution
-1. Update your existing list of packages.\
-`$ sudo apt update`
+1. Update your existing list of packages.
+```shell
+sudo apt update
+```
 
-2. Install a few prerequisite packages which let apt use packages over HTTPS.\
-`$ sudo apt install apt-transport-https ca-certificates curl software-properties-common`
+2. Install a few prerequisite packages which let apt use packages over HTTPS.
+```shell
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
 
-3. Add the GPG key for the official Docker repository to your system.\
-`$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+3. Add the GPG key for the official Docker repository to your system.
+```shell
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
 
-4. Add the Docker repository to APT sources.\
-`$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+4. Add the Docker repository to APT sources.
+```shell
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
-5. Download package information from all configured sources.\
-`$ sudo apt update`
+5. Download package information from all configured sources.
+```shell
+sudo apt update
+```
 
-6. Make sure you are about to install from the Docker repo instead of the default Ubuntu repo.\
-`$ apt-cache policy docker-ce`
+6. Make sure you are about to install from the Docker repo instead of the default Ubuntu repo.
+```shell
+apt-cache policy docker-ce
+```
 ```console
 $ apt-cache policy docker-ce
 docker-ce:
@@ -171,11 +186,15 @@ docker-ce:
         500 https://download.docker.com/linux/ubuntu jammy/stable amd64 Packages
 ```
 
-7. Install Docker.\
-`$ sudo apt install docker-ce`
+7. Install Docker.
+```shell
+sudo apt install docker-ce
+```
 
-8. Check that it’s running.\
-`$ sudo systemctl status docker`
+8. Check that it’s running.
+```shell
+sudo systemctl status docker
+```
 ```console
 $ sudo systemctl status docker
 ● docker.service - Docker Application Container Engine
@@ -203,14 +222,19 @@ Feb 27 14:11:29 wilkes-evt systemd[1]: Started Docker Application Container Engi
 ```
 
 9. Avoid typing sudo whenever you run the docker command, add your username to the docker group.
-    1. Current login user.\
-    `$ sudo usermod -aG docker ${USER}`
-    2. Other non-login user.\
-    `$ sudo usermod -aG docker <username>`
-        1. If username is john.\
-        `$ sudo usermod -aG docker john`
-        2. If username is iris.\
-        `$ sudo usermod -aG docker iris`
+    1. Current logging user.
+    ```shell
+    sudo usermod -aG docker ${USER}
+    ```
+    2. Other non-login user.
+    ```shell
+    sudo usermod -aG docker <username>
+    ```
+    > If `<username>` is john.
+    >> $ sudo usermod -aG docker john
+
+    > If `<username>` is iris.
+    >> $ sudo usermod -aG docker iris
 
 10. To apply the new group membership, log out of the server and back in.
 
