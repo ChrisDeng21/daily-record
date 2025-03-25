@@ -221,7 +221,7 @@ index 0000000..c5d6809
 +}
 ```
 
-### 延伸思考
+### Extension
 可以在 Git 中設定 `global hooks` 目錄，而不需要在每個專案中單獨配置。利用 Git 指令：
 ```shell
 git config --global core.hooksPath /path/to/global/hooks
