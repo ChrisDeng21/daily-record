@@ -5,24 +5,25 @@
 
 ## Environment
 ubuntu-22.04.4-desktop-amd64.iso
-```console
-$ cat /etc/os-release
-PRETTY_NAME="Ubuntu 22.04.4 LTS"
-NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.4 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
-
-$ uname -a
-Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
-```
+> This is console output：
+> ```console＝
+> $ cat /etc/os-release
+> PRETTY_NAME="Ubuntu 22.04.4 LTS"
+> NAME="Ubuntu"
+> VERSION_ID="22.04"
+> VERSION="22.04.4 LTS (Jammy Jellyfish)"
+> VERSION_CODENAME=jammy
+> ID=ubuntu
+> ID_LIKE=debian
+> HOME_URL="https://www.ubuntu.com/"
+> SUPPORT_URL="https://help.ubuntu.com/"
+> BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+> PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+> UBUNTU_CODENAME=jammy
+> 
+> $ uname -a
+> Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+> ```
 
 ## Symptom
 None
@@ -42,34 +43,29 @@ sudo apt install git vim cppcheck
 1. 建立新專案加入版本控制，然後檢查 .git 目錄是否生成。
 ```shell
 mkdir GIT_TEST
-```
-```shell
 cd GIT_TEST
-```
-```shell
 git init
-```
-```shell
 ls -a
 ```
-```console
-$ mkdir GIT_TEST
-$ cd GIT_TEST
-$ git init
-hint: Using 'master' as the name for the initial branch. This default branch name
-hint: is subject to change. To configure the initial branch name to use in all
-hint: of your new repositories, which will suppress this warning, call:
-hint:
-hint:   git config --global init.defaultBranch <name>
-hint:
-hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
-hint: 'development'. The just-created branch can be renamed via this command:
-hint:
-hint:   git branch -m <name>
-Initialized empty Git repository in /home/chrisdeng/GIT_TEST/.git/
-$ ls -a
-.  ..  .git
-```
+> This is console output：
+> ```console＝
+> $ mkdir GIT_TEST
+> $ cd GIT_TEST
+> $ git init
+> hint: Using 'master' as the name for the initial branch. This default branch name
+> hint: is subject to change. To configure the initial branch name to use in all
+> hint: of your new repositories, which will suppress this warning, call:
+> hint:
+> hint:   git config --global init.defaultBranch <name>
+> hint:
+> hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+> hint: 'development'. The just-created branch can be renamed via this command:
+> hint:
+> hint:   git branch -m <name>
+> Initialized empty Git repository in /home/chrisdeng/GIT_TEST/.git/
+> $ ls -a
+> .  ..  .git
+> ```
 
 2. 新增檔案 `.git/hooks/pre-commit`。範本參考： [git-pre-commit-cppcheck](<https://github.com/danmar/cppcheck/blob/main/tools/git-pre-commit-cppcheck>)。\
 **注意!!!** 下面內容與範本差異在 cppcheck 那行有新增 `--enable=all`。
@@ -154,15 +150,16 @@ git add err.c
 ```shell
 git commit -m "First commit"
 ```
-```console
-$ git add err.c
-$ git commit -m "First commit"
-Checking err.c ...
-err.c:5:9: style: Unused variable: i [unusedVariable]
-    int i;
-        ^
-nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
-```
+> This is console output：
+> ```console＝
+> $ git add err.c
+> $ git commit -m "First commit"
+> Checking err.c ...
+> err.c:5:9: style: Unused variable: i [unusedVariable]
+>     int i;
+>         ^
+> nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
+> ```
 
 6. 按照提示把錯誤修正。
 ```shell
@@ -184,42 +181,44 @@ git add err.c
 ```shell
 git commit -m "First commit"
 ```
-```console
-$ git add err.c
-$ git commit -m "First commit"
-Checking err.c ...
-nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
-
-[master (root-commit) ed2dc78] First commit
- 1 file changed, 6 insertions(+)
- create mode 100644 err.c
-```
+> This is console output：
+> ```console＝
+> $ git add err.c
+> $ git commit -m "First commit"
+> Checking err.c ...
+> nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
+> 
+> [master (root-commit) ed2dc78] First commit
+>  1 file changed, 6 insertions(+)
+>  create mode 100644 err.c
+> ```
 
 8. 確認提交是否成功。
 ```shell
 git log -p
 ```
-```console
-$ git log -p
-commit ed2dc78e4f0bbe6ee2e93572f5cb82b88f91bd66 (HEAD -> master)
-Author: User <User@mail.com>
-Date:   Fri Mar 7 16:47:24 2025 +0800
-
-    First commit
-
-diff --git a/err.c b/err.c
-new file mode 100644
-index 0000000..c5d6809
---- /dev/null
-+++ b/err.c
-@@ -0,0 +1,6 @@
-+#include <stdio.h>
-+
-+int main()
-+{
-+    return 0;
-+}
-```
+> This is console output：
+> ```console＝
+> $ git log -p
+> commit ed2dc78e4f0bbe6ee2e93572f5cb82b88f91bd66 (HEAD -> master)
+> Author: User <User@mail.com>
+> Date:   Fri Mar 7 16:47:24 2025 +0800
+> 
+>     First commit
+> 
+> diff --git a/err.c b/err.c
+> new file mode 100644
+> index 0000000..c5d6809
+> --- /dev/null
+> +++ b/err.c
+> @@ -0,0 +1,6 @@
+> +#include <stdio.h>
+> +
+> +int main()
+> +{
+> +    return 0;
+> +}
+> ```
 
 ### Extension
 可以在 Git 中設定 `global hooks` 目錄，而不需要在每個專案中單獨配置。利用 Git 指令：
