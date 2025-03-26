@@ -5,24 +5,25 @@
 
 ## Environment
 ubuntu-22.04.4-desktop-amd64.iso
-```console
-$ cat /etc/os-release
-PRETTY_NAME="Ubuntu 22.04.4 LTS"
-NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.4 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
-
-$ uname -a
-Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
-```
+> This is console output：
+> ```console＝
+> $ cat /etc/os-release
+> PRETTY_NAME="Ubuntu 22.04.4 LTS"
+> NAME="Ubuntu"
+> VERSION_ID="22.04"
+> VERSION="22.04.4 LTS (Jammy Jellyfish)"
+> VERSION_CODENAME=jammy
+> ID=ubuntu
+> ID_LIKE=debian
+> HOME_URL="https://www.ubuntu.com/"
+> SUPPORT_URL="https://help.ubuntu.com/"
+> BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+> PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+> UBUNTU_CODENAME=jammy
+> 
+> $ uname -a
+> Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+> ```
 
 ## Symptom
 None
@@ -40,16 +41,15 @@ docker pull gitlab/gitlab-ce:17.10.0-ce.0
 ```shell
 mkdir -p ${HOME}/Gitlab/data ${HOME}/Gitlab/logs ${HOME}/Gitlab/config
 ```
-- `${HOME}/Gitlab/data`：主要儲存 GitLab 的資料。
-  > 包括Git repo、用戶資料、配置文件等。 \
-  > 掛載到本地後，即使容器發生意外被刪除或重新創建，資料也能夠得到保留，達到數據持久化。
-- `${HOME}/Gitlab/logs`：主要儲存 GitLab 的 Log 。
-  > 包含 GitLab 的運行 Log 、錯誤 Log 等重要資訊。 \
-  > 掛載到本地後，方便日後查看和管理 Log ，並進行故障排除和監控。
-- `${HOME}/Gitlab/config`：主要儲存 GitLab 的設定檔。
-  > 包含系統設定、用戶權限、外部整合等設定。 \
-  > 掛載到本地後，可根據需求進行自定義調整。
-
+> - `${HOME}/Gitlab/data`：主要儲存 GitLab 的資料。
+>   > 包括Git repo、用戶資料、配置文件等。 \
+>   > 掛載到本地後，即使容器發生意外被刪除或重新創建，資料也能夠得到保留，達到數據持久化。
+> - `${HOME}/Gitlab/logs`：主要儲存 GitLab 的 Log 。
+>   > 包含 GitLab 的運行 Log 、錯誤 Log 等重要資訊。 \
+>   > 掛載到本地後，方便日後查看和管理 Log ，並進行故障排除和監控。
+> - `${HOME}/Gitlab/config`：主要儲存 GitLab 的設定檔。
+>   > 包含系統設定、用戶權限、外部整合等設定。 \
+>   > 掛載到本地後，可根據需求進行自定義調整。
 
 3. 啟動 Gitlab 服務。
 ```shell
@@ -98,13 +98,14 @@ gitlab-ctl reconfigure
 ```shell
 gitlab-rake "gitlab:password:reset"
 ```
-```console
-# gitlab-rake "gitlab:password:reset"
-        Enter username: root
-        Enter password:
-        Confirm password:
-        Password successfully updated for user with username root.
-```
+> This is console output：
+> ```console＝
+> # gitlab-rake "gitlab:password:reset"
+>         Enter username: root
+>         Enter password:
+>         Confirm password:
+>         Password successfully updated for user with username root.
+> ```
 
 5. 使用瀏覽器打開 Gitlab 首頁，例如：`http://172.16.203.166:8929/`，並且使用 root 帳號搭配登入密碼即可。
 
@@ -112,8 +113,6 @@ gitlab-rake "gitlab:password:reset"
 因為 `docker run` 使用 `--restart always` 讓 container 自動重啟，若是要 Gitlab Docker Container 停止，可以改變策略再關閉。
 ```shell
 docker update --restart=no gitlab
-```
-```shell
 docker stop gitlab
 ```
 
