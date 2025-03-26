@@ -42,14 +42,14 @@ docker pull gitlab/gitlab-ce:17.10.0-ce.0
 mkdir -p ${HOME}/Gitlab/data ${HOME}/Gitlab/logs ${HOME}/Gitlab/config
 ```
 > - `${HOME}/Gitlab/data`：主要儲存 GitLab 的資料。
->   > 包括Git repo、用戶資料、配置文件等。 \
->   > 掛載到本地後，即使容器發生意外被刪除或重新創建，資料也能夠得到保留，達到數據持久化。
+>   - 包括Git repo、用戶資料、配置文件等。
+>   - 掛載到本地後，即使容器發生意外被刪除或重新創建，資料也能夠得到保留，達到數據持久化。
 > - `${HOME}/Gitlab/logs`：主要儲存 GitLab 的 Log 。
->   > 包含 GitLab 的運行 Log 、錯誤 Log 等重要資訊。 \
->   > 掛載到本地後，方便日後查看和管理 Log ，並進行故障排除和監控。
+>   - 包含 GitLab 的運行 Log 、錯誤 Log 等重要資訊。
+>   - 掛載到本地後，方便日後查看和管理 Log ，並進行故障排除和監控。
 > - `${HOME}/Gitlab/config`：主要儲存 GitLab 的設定檔。
->   > 包含系統設定、用戶權限、外部整合等設定。 \
->   > 掛載到本地後，可根據需求進行自定義調整。
+>   - 包含系統設定、用戶權限、外部整合等設定。
+>   - 掛載到本地後，可根據需求進行自定義調整。
 
 3. 啟動 Gitlab 服務。
 ```shell
