@@ -5,24 +5,25 @@
 
 ## Environment
 ubuntu-22.04.4-desktop-amd64.iso
-```console
-$ cat /etc/os-release
-PRETTY_NAME="Ubuntu 22.04.4 LTS"
-NAME="Ubuntu"
-VERSION_ID="22.04"
-VERSION="22.04.4 LTS (Jammy Jellyfish)"
-VERSION_CODENAME=jammy
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=jammy
-
-$ uname -a
-Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
-```
+> This is console output：
+> ```console＝
+> $ cat /etc/os-release
+> PRETTY_NAME="Ubuntu 22.04.4 LTS"
+> NAME="Ubuntu"
+> VERSION_ID="22.04"
+> VERSION="22.04.4 LTS (Jammy Jellyfish)"
+> VERSION_CODENAME=jammy
+> ID=ubuntu
+> ID_LIKE=debian
+> HOME_URL="https://www.ubuntu.com/"
+> SUPPORT_URL="https://help.ubuntu.com/"
+> BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+> PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+> UBUNTU_CODENAME=jammy
+> 
+> $ uname -a
+> Linux wilkes-evt 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+> ```
 
 ## Symptom
 VirtualBox 6 fails to run.
