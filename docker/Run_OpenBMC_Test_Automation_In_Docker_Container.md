@@ -191,11 +191,11 @@ docker exec -it openbmcTest /bin/bash
 
 4. 使用 ipmitool 確認模擬器是否存在。
 ```shell
-ipmitool -I lanplus -C 17 -N 3 -p 2623 -U root -P 0penBmc -H 127.0.0.1 -p 2623 mc info
+ipmitool -I lanplus -C 17 -U root -P 0penBmc -H 127.0.0.1 -p 2623 mc info
 ```
 > This is console output：
 > ```console＝
-> $ ipmitool -I lanplus -C 17 -N 3 -p 2623 -U root -P 0penBmc -H 127.0.0.1 -p 2623 mc info
+> $ ipmitool -I lanplus -C 17 -U root -P 0penBmc -H 127.0.0.1 -p 2623 mc info
 > Device ID                 : 0
 > Device Revision           : 0
 > Firmware Revision         : 2.18
