@@ -156,7 +156,7 @@ cd ${HOME}/OpenBMC_Automation
 wget https://jenkins.openbmc.org/job/latest-master/label=docker-builder,target=romulus/lastSuccessfulBuild/artifact/openbmc/build/tmp/deploy/images/romulus/obmc-phosphor-image-romulus.static.mtd
 ```
 
-3. 啟動 docker container 。
+3. 啟動 Docker Container 。
 ```shell
 docker run --name openbmcTest --workdir ${HOME} --volume ${HOME}/OpenBMC_Automation:${HOME} -it openbmc/ubuntu-robot-qemu /bin/bash
 ```
@@ -184,7 +184,7 @@ cd ${HOME}/OpenBMC_Automation
 git clone https://github.com/openbmc/openbmc-test-automation.git
 ```
 
-3. 登入剛剛已啟動的 docker container 。
+3. 登入剛剛已啟動的 Docker Container 。
 ```shell
 docker exec -it openbmcTest /bin/bash
 ```
