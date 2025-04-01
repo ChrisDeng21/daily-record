@@ -39,7 +39,7 @@ sudo apt update
 
 2. Install a few prerequisite packages which let apt use packages over HTTPS.
 ```shell
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 ```
 
 3. Add the GPG key for the official Docker repository to your system.
@@ -190,7 +190,7 @@ apt-cache policy docker-ce
 
 7. Install Docker.
 ```shell
-sudo apt install docker-ce
+sudo apt install -y docker-ce
 ```
 
 8. Check that it’s running.
