@@ -96,7 +96,7 @@ qemu-system-arm --version
 `ast1030-evb` is supported in the latest version.
 > This is console output：
 > ```console＝
-> $ qemu-system-arm --machine help
+> $ qemu-system-arm -machine help
 > Supported machines are:
 > ast1030-evb          Aspeed AST1030 MiniBMC (Cortex-M4)
 > ast2500-evb          Aspeed AST2500 EVB (ARM1176)
