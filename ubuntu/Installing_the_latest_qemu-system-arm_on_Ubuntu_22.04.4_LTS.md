@@ -32,6 +32,7 @@ None
 The qemu-system-arm version 6.2 was installed from the APT server, but the `ast1030-evb` is not listed among the supported machines.
 
 ## Solution
+### Buiild
 1. Install a few prerequisite packages which let qemu build successfully.
   - System's packages：
 ```shell
