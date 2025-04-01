@@ -81,7 +81,7 @@ make -j$(nproc)
 sudo make install
 ```
 
-2. Verify the installion is success.
+2. Verify the installation is success.
 ```shell
 qemu-system-arm --version
 ```
