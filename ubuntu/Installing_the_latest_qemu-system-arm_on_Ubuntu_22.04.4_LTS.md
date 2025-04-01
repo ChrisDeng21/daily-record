@@ -36,7 +36,7 @@ The qemu-system-arm version 6.2 was installed from the APT server, but the `ast1
 1. Install a few prerequisite packages which let qemu build successfully.
   - System's packages：
 ```shell
-sudo apt-get install -y build-essential libglib2.0-dev libpixman-1-dev zlib1g-dev git python3-pip ninja-build
+sudo apt install -y build-essential libglib2.0-dev libpixman-1-dev zlib1g-dev git python3-pip ninja-build
 ```
   - Python's packages：
 ```shell
