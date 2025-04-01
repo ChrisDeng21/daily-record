@@ -44,12 +44,12 @@ wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --y
 
 3. Download package information from all configured sources.
 ```shell
-sudo apt-get update
+sudo apt update
 ```
 
 4. Install VirtualBox.
 ```shell
-sudo apt-get install -y virtualbox-7.1
+sudo apt install -y virtualbox-7.1
 ```
 
 ## Reference
