@@ -29,7 +29,7 @@ ubuntu-22.04.4-desktop-amd64.iso
 None
 
 ## Cause
-The `qemu-system-arm` version is `6.2` which install from APT Server, but `ast1030-evb` doesn't exist in supported machines.
+The qemu-system-arm version 6.2 was installed from the APT server, but the ast1030-evb is not listed among the supported machines.
 
 ## Solution
 1. Install a few prerequisite packages which let qemu build successfully.
