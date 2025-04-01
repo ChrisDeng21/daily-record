@@ -146,8 +146,6 @@ int main()
 5. 提交檔案失敗。
 ```shell
 git add err.c
-```
-```shell
 git commit -m "First commit"
 ```
 > This is console output：
@@ -177,8 +175,6 @@ int main()
 7. 再次提交檔案成功。
 ```shell
 git add err.c
-```
-```shell
 git commit -m "First commit"
 ```
 > This is console output：
