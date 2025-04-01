@@ -49,7 +49,7 @@ sudo apt-get update
 
 4. Install VirtualBox.
 ```shell
-sudo apt-get install virtualbox-7.1
+sudo apt-get install -y virtualbox-7.1
 ```
 
 ## Reference
