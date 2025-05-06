@@ -52,21 +52,27 @@ cd qemu
 3. Configure the build target.
   - To support ARM platform
 ```shell
-./configure --target-list=arm-softmmu,arm-linux-user
+./configure --target-list=arm-softmmu,arm-linux-user --enable-slirp
 ```
-> `arm-softmmu`：It's for system mode.
-> `arm-linux-user`：It's for user mode.
+> `--target-list=arm-softmmu`：set target list, it's for system mode.
+> 
+> `--target-list=arm-linux-user`：set target list, it's for user mode.
+> 
+> `--enable-slirp`：libslirp user mode network backend support
 
   - To support AARCH64 platform
 ```shell
-./configure --target-list=aarch64-softmmu,aarch64-linux-user
+./configure --target-list=aarch64-softmmu,aarch64-linux-user --enable-slirp
 ```
-> `aarch64-softmmu`：It's for system mode.
-> `aarch64-linux-user`：It's for user mode.
+> `--target-list=arm-softmmu`：set target list, it's for system mode.
+> 
+> `--target-list=arm-linux-user`：set target list, it's for user mode.
+> 
+> `--enable-slirp`：libslirp user mode network backend support
 
   - Both support ARM and AARCH64 platform
 ```shell
-./configure --target-list=arm-softmmu,arm-linux-user,aarch64-softmmu,aarch64-linux-user
+./configure --target-list=arm-softmmu,arm-linux-user,aarch64-softmmu,aarch64-linux-user --enable-slirp
 ```
 
 4. Compile QEMU.
@@ -111,7 +117,7 @@ qemu-system-arm --version
 > This is console output：
 > ```console＝
 > $ qemu-system-arm --version
-> QEMU emulator version 9.2.91 (v10.0.0-rc1-15-g0f15892aca)
+> QEMU emulator version 10.0.50 (v10.0.0-529-g5134cf9b5d)
 > Copyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers
 > ```
 
