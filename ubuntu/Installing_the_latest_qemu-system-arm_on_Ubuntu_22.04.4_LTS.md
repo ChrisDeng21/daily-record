@@ -57,6 +57,18 @@ cd qemu
 > `arm-softmmu`：It's for system mode.
 > `arm-linux-user`：It's for user mode.
 
+  - To support AARCH64 platform
+```shell
+./configure --target-list=aarch64-softmmu,aarch64-linux-user
+```
+> `aarch64-softmmu`：It's for system mode.
+> `aarch64-linux-user`：It's for user mode.
+
+  - Both support ARM and AARCH64 platform
+```shell
+./configure --target-list=arm-softmmu,arm-linux-user,aarch64-softmmu,aarch64-linux-user
+```
+
 4. Compile QEMU.
 ```shell
 make -j$(nproc)
@@ -64,14 +76,25 @@ make -j$(nproc)
 
 ### Method 1：Use qemu-system-arm directly
 1. Execute binary file in build directory.
-  - A sample for check version：
+  - Check version for ARM platform：
 ```shell
 ./build/qemu-system-arm --version
 ```
 > This is console output：
 > ```console＝
 > $ ./build/qemu-system-arm --version
-> QEMU emulator version 9.2.91 (v10.0.0-rc1-15-g0f15892aca)
+> QEMU emulator version 10.0.50 (v10.0.0-529-g5134cf9b5d)
+> Copyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers
+> ```
+
+  - Check version for AARCH64 platform：
+```shell
+./build/qemu-system-aarch64 --version
+```
+> This is console output：
+> ```console＝
+> $ ./build/qemu-system-aarch64 --version
+> QEMU emulator version 10.0.50 (v10.0.0-529-g5134cf9b5d)
 > Copyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers
 > ```
 
