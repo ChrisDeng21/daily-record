@@ -51,7 +51,7 @@ ls -l tmp/deploy/images/ast2700-default/
 ```
 
 4. 按照官方 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html>) 提供的指令啟動。
-- `-M ast2700-evb` 改成 `-M ast2700a1-evb`
+> `-M ast2700-evb` 改成 `-M ast2700a1-evb`
 ```shell
 cd tmp/deploy/images/
 
