@@ -161,6 +161,33 @@ qemu-system-aarch64 -M ast2700a1-evb \
 > [    0.000000] Machine model: AST2700-EVB
 > ```
 
+### Extension
+如果需要連入模擬器的能力，可以利用轉發模擬器連接埠的指令，將 QEMU 指令改寫成：
+```shell
+qemu-system-aarch64 -M ast2700a1-evb \
+  -device loader,force-raw=on,addr=0x400000000,file=${IMGDIR}/u-boot-nodtb.bin \
+  -device loader,force-raw=on,addr=$((0x400000000 + ${UBOOT_SIZE})),file=${IMGDIR}/u-boot.dtb \
+  -device loader,force-raw=on,addr=0x430000000,file=${IMGDIR}/bl31.bin \
+  -device loader,force-raw=on,addr=0x430080000,file=${IMGDIR}/optee/tee-raw.bin \
+  -device loader,cpu-num=0,addr=0x430000000 \
+  -device loader,cpu-num=1,addr=0x430000000 \
+  -device loader,cpu-num=2,addr=0x430000000 \
+  -device loader,cpu-num=3,addr=0x430000000 \
+  -smp 4 \
+  -drive file=${IMGDIR}/image-bmc,format=raw,if=mtd \
+  -nographic \
+  -net nic \
+  -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu
+```
+> 新增兩行在 QEMU 指令後
+> 
+> `-net nic`
+>  
+> `-net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu`
+> - `127.0.0.1:2222` 轉發模擬器連接埠 `22` (用於SSH)
+> - `127.0.0.1:2443` 轉發模擬器連接埠 `443` (用於HTTPS/REDFISH)
+> - `127.0.0.1:2623` 轉發模擬器連接埠 `623` (用於IPMI)
+
 ## Reference
 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
 
