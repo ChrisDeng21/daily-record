@@ -32,7 +32,7 @@ None
 提供一種範例，編譯 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>) 的 AST2700，並且使用 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html>) 方式啟動，用於前期建置。
 
 ## Solution
-1. 由於 AST2700 使用 AARCH64 平台，請按照 [Installing the latest qemu-system-arm on Ubuntu 22.04.4 LTS](<https://github.com/ChrisDeng21/daily-record/blob/main/ubuntu/Installing_the_latest_qemu-system-arm_on_Ubuntu_22.04.4_LTS.md>) 編譯適合的 QEMU。
+1. 由於 AST2700 使用 `AARCH64` 平台，請按照 [Installing the latest qemu-system-arm on Ubuntu 22.04.4 LTS](<https://github.com/ChrisDeng21/daily-record/blob/main/ubuntu/Installing_the_latest_qemu-system-arm_on_Ubuntu_22.04.4_LTS.md#buiild>) 編譯適合的 QEMU。
 
 2. 下載 Aspeed OpenBMC（以 tags `v09.06` 示範）。
 ```shell
@@ -40,7 +40,7 @@ git clone -b v09.06 https://github.com/AspeedTech-BMC/openbmc.git
 cd openbmc/
 ```
 
-3. 按照 [SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk>) 建置環境並設定目標機器（以 `ast2700-default` 示範）來開始編譯。
+3. 按照 [SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>) 建置環境並設定目標機器（以 `ast2700-default` 示範）來開始編譯。
 ```shell
 . setup ast2700-default
 bitbake obmc-phosphor-image
@@ -166,4 +166,4 @@ qemu-system-aarch64 -M ast2700a1-evb \
 
 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html>)
 
-[SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk>)
+[SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
