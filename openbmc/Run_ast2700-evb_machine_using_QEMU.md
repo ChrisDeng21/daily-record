@@ -179,11 +179,7 @@ qemu-system-aarch64 -M ast2700a1-evb \
   -net nic \
   -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu
 ```
-> 新增兩行在 QEMU 指令後
-> 
-> `-net nic`
->  
-> `-net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu`
+> 新增兩行 -net 參數在 QEMU 指令後。
 > - `127.0.0.1:2222` 轉發模擬器連接埠 `22` (用於SSH)
 > - `127.0.0.1:2443` 轉發模擬器連接埠 `443` (用於HTTPS/REDFISH)
 > - `127.0.0.1:2623` 轉發模擬器連接埠 `623` (用於IPMI)
