@@ -143,7 +143,7 @@ docker images
 > ```
 
 ### Test
-使用 SSH 登入兩個 Terminal ，一個用於執行模擬器，一個用於執行自動測試。
+使用兩個 Terminal ，一個用於執行模擬器，一個用於執行自動測試。
 
 #### Terminal 1：qemu-system-arm
 1. 進入工作目錄。
@@ -218,6 +218,15 @@ ipmitool -I lanplus -C 17 -U root -P 0penBmc -H 127.0.0.1 -p 2623 mc info
 >     0x00
 > 
 > ```
+
+- 測試 Redfish 參考指令
+```shell
+curl -k https://root:0penBmc@localhost:2443/redfish/v1
+```
+- 測試 SSH 參考指令
+```shell
+ssh -p 2222 root@127.0.0.1
+```
 
 5. 使用 robot 測試模擬器。
 ```shell
