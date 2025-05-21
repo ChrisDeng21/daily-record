@@ -80,8 +80,8 @@ cd qemu
 make -j$(nproc)
 ```
 
-### Method 1：Use qemu-system-arm directly
-1. Execute binary file in build directory.
+### Method 1：Use directly
+1. Execute binary in build directory.
   - Check version for ARM platform：
 ```shell
 ./build/qemu-system-arm --version
@@ -104,8 +104,8 @@ make -j$(nproc)
 > Copyright (c) 2003-2025 Fabrice Bellard and the QEMU Project developers
 > ```
 
-### Method 2：Install qemu-system-arm to system environment
-1. Install to system.
+### Method 2：Install into system environment
+1. Install into system.
 ```shell
 sudo make install
 ```
