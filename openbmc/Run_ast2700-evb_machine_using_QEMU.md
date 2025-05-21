@@ -29,7 +29,7 @@ ubuntu-22.04.4-desktop-amd64.iso
 None
 
 ## Cause
-提供一種範例，編譯 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>) 的 AST2700，並且使用 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html>) 方式啟動，用於前期建置。
+提供一種範例，編譯 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>) 的 AST2700，並且使用 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>) 方式啟動，用於前期建置。
 
 ## Solution
 1. 由於 AST2700 使用 `AARCH64` 平台，請按照 [Installing the latest qemu-system-arm on Ubuntu 22.04.4 LTS](<https://github.com/ChrisDeng21/daily-record/blob/main/ubuntu/Installing_the_latest_qemu-system-arm_on_Ubuntu_22.04.4_LTS.md#buiild>) 編譯適合的 QEMU。
@@ -50,7 +50,7 @@ bitbake obmc-phosphor-image
 ls -l tmp/deploy/images/ast2700-default/
 ```
 
-4. 按照官方 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html>) 提供的指令啟動。
+4. 按照官方 [Booting the ast2700-evb machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>) 提供的指令啟動。
 > `-M ast2700-evb` 改成 `-M ast2700a1-evb`
 ```shell
 cd tmp/deploy/images/
@@ -187,6 +187,6 @@ qemu-system-aarch64 -M ast2700a1-evb \
 ## Reference
 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
 
-[QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html>)
+[QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
 
 [SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
