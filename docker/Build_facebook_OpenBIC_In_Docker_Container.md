@@ -82,10 +82,15 @@ west update
 ```
 
   - 針對工作目錄下的 `zephyr` 和 `zephyr_nuvoton` 資料夾，需要按照 [Facebook OpenBIC - fix_patch](<https://github.com/facebook/OpenBIC/tree/main/fix_patch>) 將程式碼更新
-    * 以 `zephyr` 資料夾為例子，進入資料夾後，使用 `ls` 指令搭配 `git apply` 方式。而 `zephyr_nuvoton` 資料夾也可以使用類似方式，這裡不提供完整指令。
+>    * 以 `zephyr` 資料夾為例子，進入資料夾後，使用 `ls` 指令搭配 `git apply` 方式。
 ```shell
 cd /workdir/zephyr
 ls ../openbic/fix_patch/tag_v00.01.06_d014527731033db477f806f5bff2e1ca5d4b2ba7/*.patch | sort | xargs -I{} git apply {}
+```
+>    * 以 `zephyr_nuvoton` 資料夾為例子，進入資料夾後，使用 `ls` 指令搭配 `git apply` 方式。
+```shell
+cd /workdir/zephyr_nuvoton/
+ls ../openbic/fix_patch/nuvoton_tag_v2.6.0.0_cad6d72381ce408c40867f41a8741dba16e50bdf/*.patch | sort | xargs -I{} git apply {}
 ```
 
   - 編譯（以 yv35-cl 為例子）
