@@ -29,28 +29,28 @@ ubuntu-22.04.4-desktop-amd64.iso
 None
 
 ## Cause
-提供一種範例，編譯 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>) 的 AST2700，並且使用 [QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>) 方式啟動，用於前期建置。
+提供一種範例，編譯 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>) 的 AST2700 EVB，並且透過 [QEMU/aspeed-2700-family-boards-ast2700-evb](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>) 方式啟動，用於前期環境測試。
 
 ## Solution
-1. 由於 AST2700 使用 `AARCH64` 平台，請按照 [Installing the latest qemu-system-arm on Ubuntu 22.04.4 LTS](<https://github.com/ChrisDeng21/daily-record/blob/main/ubuntu/Installing_the_latest_qemu-system-arm_on_Ubuntu_22.04.4_LTS.md#buiild>) 編譯適合的 QEMU。
+1. 因為 AST2700 EVB 使用 `AARCH64` 平台，請按照 [Installing the latest qemu-system-arm](<https://github.com/ChrisDeng21/daily-record/blob/main/ubuntu/Installing_the_latest_qemu-system-arm_on_Ubuntu_22.04.4_LTS.md#buiild>) 準備適合的 QEMU 工具。
 
-2. 下載 Aspeed OpenBMC（以 tags `v09.06` 示範）。
+2. 下載 Aspeed OpenBMC 程式碼（以 tags `v09.06` 示範）。
 ```shell
 git clone -b v09.06 https://github.com/AspeedTech-BMC/openbmc.git
 cd openbmc/
 ```
 
-3. 按照 [SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>) 建置環境並設定目標機器（以 `ast2700-default` 示範）來開始編譯。
+3. 按照 [SDK](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>) 建置編譯環境並設定目標機器 `ast2700-default` 來開始編譯。
 ```shell
 . setup ast2700-default
 bitbake obmc-phosphor-image
 ```
 - 等待編譯完成後，可以檢查 images 是否正常產出。
 ```shell
-ls -l tmp/deploy/images/ast2700-default/
+ls -l tmp/deploy/images/ast2700-default/image-bmc
 ```
 
-4. 按照官方 [Booting the ast2700-evb machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>) 提供的指令啟動。
+4. 按照 [QEMU/booting-the-ast2700-evb-machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>) 提供的指令啟動。
 > 注意! `-M ast2700-evb` 改成 `-M ast2700a1-evb`
 ```shell
 cd tmp/deploy/images/
@@ -162,7 +162,7 @@ qemu-system-aarch64 -M ast2700a1-evb \
 > ```
 
 ### Extension
-1. 如果需要連入模擬器的能力，利用轉發模擬器連接埠的指令，將 QEMU 指令改寫成：
+1. 如果需要連入模擬器的能力，新增轉發模擬器連接埠的參數，將 QEMU 指令改寫成：
 ```shell
 qemu-system-aarch64 -M ast2700a1-evb \
   -device loader,force-raw=on,addr=0x400000000,file=${IMGDIR}/u-boot-nodtb.bin \
@@ -184,11 +184,17 @@ qemu-system-aarch64 -M ast2700a1-evb \
 > - `127.0.0.1:2443` 轉發模擬器連接埠 `443` (用於HTTPS/REDFISH)
 > - `127.0.0.1:2623` 轉發模擬器連接埠 `623` (用於IPMI)
 
-2. 或是使用腳本，將 [qemuast2700a1-evb.sh](<https://github.com/ChrisDeng21/daily-record/blob/main/openbmc/qemuast2700a1-evb.sh>) 複製到 `openbmc/` 下，images 編譯成功後，直接執行即可。
-> - 請先將腳本內 `QEMUTOOL` 參數所定義的工具路徑改成你自己編譯出的 QEMU 路徑。
-> > - QEMUTOOL=/home/chrisdeng/Work/Project/qemu/build/qemu-system-aarch64
-> - 並且賦予執行權限。
-> > - chmod 775 qemuast2700a1-evb.sh
+2. 或使用腳本，將 [qemuast2700a1-evb.sh](<https://github.com/ChrisDeng21/daily-record/blob/main/openbmc/qemuast2700a1-evb.sh>) 複製到 Aspeed OpenBMC 程式碼的根目錄下，也就是 `openbmc/` 下，待 images 編譯成功後，直接執行即可。
+> - 請先確認腳本內 `QEMUTOOL` 參數所定義的工具路徑是可行的，不然要改成你自己編譯出的路徑。
+> 
+> 例如：`QEMUTOOL=qemu-system-aarch64` 改成 `QEMUTOOL=/home/chrisdeng/Work/Project/qemu/build/qemu-system-aarch64`，這是我的環境。
+```shell
+QEMUTOOL=/home/chrisdeng/Work/Project/qemu/build/qemu-system-aarch64
+```
+> - 並且賦予腳本執行權限。
+```shell
+chmod 775 qemuast2700a1-evb.sh
+```
 > - 之後直接執行即可。
 ```shell
 ./qemuast2700a1-evb.sh
@@ -197,6 +203,8 @@ qemu-system-aarch64 -M ast2700a1-evb \
 ## Reference
 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
 
-[QEMU](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
+[QEMU/aspeed-2700-family-boards-ast2700-evb](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
 
-[SDK GUIDE](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
+[QEMU/booting-the-ast2700-evb-machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>)
+
+[SDK](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
