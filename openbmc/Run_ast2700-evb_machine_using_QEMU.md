@@ -51,7 +51,7 @@ ls -l tmp/deploy/images/ast2700-default/
 ```
 
 4. 按照官方 [Booting the ast2700-evb machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>) 提供的指令啟動。
-> `-M ast2700-evb` 改成 `-M ast2700a1-evb`
+> 注意! `-M ast2700-evb` 改成 `-M ast2700a1-evb`
 ```shell
 cd tmp/deploy/images/
 
@@ -162,7 +162,7 @@ qemu-system-aarch64 -M ast2700a1-evb \
 > ```
 
 ### Extension
-如果需要連入模擬器的能力，可以利用轉發模擬器連接埠的指令，將 QEMU 指令改寫成：
+1. 如果需要連入模擬器的能力，利用轉發模擬器連接埠的指令，將 QEMU 指令改寫成：
 ```shell
 qemu-system-aarch64 -M ast2700a1-evb \
   -device loader,force-raw=on,addr=0x400000000,file=${IMGDIR}/u-boot-nodtb.bin \
@@ -183,6 +183,16 @@ qemu-system-aarch64 -M ast2700a1-evb \
 > - `127.0.0.1:2222` 轉發模擬器連接埠 `22` (用於SSH)
 > - `127.0.0.1:2443` 轉發模擬器連接埠 `443` (用於HTTPS/REDFISH)
 > - `127.0.0.1:2623` 轉發模擬器連接埠 `623` (用於IPMI)
+
+2. 或是使用腳本，將 [qemuast2700a1-evb.sh](<https://github.com/ChrisDeng21/daily-record/blob/main/openbmc/qemuast2700a1-evb.sh>) 複製到 `openbmc/` 下，images 編譯成功後，直接執行即可。
+> - 請先將腳本內 `QEMUTOOL` 參數所定義的工具路徑改成你自己編譯出的 QEMU 路徑。
+> > - QEMUTOOL=/home/chrisdeng/Work/Project/qemu/build/qemu-system-aarch64
+> - 並且賦予執行權限。
+> > - chmod 775 qemuast2700a1-evb.sh
+> - 之後直接執行即可。
+```shell
+./qemuast2700a1-evb.sh
+```
 
 ## Reference
 [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
