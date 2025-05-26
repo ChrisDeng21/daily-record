@@ -4,7 +4,7 @@
 
 # The QEMU tool path depends on your system,
 # feel free to adjust it to match your system configuration.
-QEMUTOOL=/home/chrisdeng/Work/Project/qemu/build/qemu-system-aarch64
+QEMUTOOL=qemu-system-aarch64
 
 # The build path does not require modification,
 # but you can change it if it does not meet your system.
