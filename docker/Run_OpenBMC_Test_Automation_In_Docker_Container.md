@@ -3,6 +3,9 @@
 ## Created Date
 2025/03/27
 
+## Update History
+2025/06/11：有人反應目前編譯 Docker Image 會出現安裝錯誤，所以改成自己編譯 QEMU 工具比較適合。
+
 ## Environment
 ubuntu-22.04.4-desktop-amd64.iso
 > This is console output：
@@ -29,11 +32,14 @@ ubuntu-22.04.4-desktop-amd64.iso
 None
 
 ## Cause
-提供一種範例，編譯出具備 qemu-system-arm 與 openbmc-test-automation 的 Docker Image ，並且演示如何對模擬器進行測試。
+提供一種範例，編譯 `具備 openbmc-test-automation 環境的 Docker Image` 和 `QEMU 工具`，並且演示如何對模擬器進行測試。
 
 ## Solution
 
 ### Build
+
+#### 具備 openbmc-test-automation 環境的 Docker Image
+
 1. 建立工作目錄。
 ```shell
 mkdir -p ${HOME}/OpenBMC_Automation
@@ -54,83 +60,12 @@ git clone https://github.com/openbmc/openbmc-build-scripts
 cd openbmc-build-scripts
 ```
 
-5. 修改 `scripts/build-qemu-robot-docker.sh` ，添加 `qemu-system-arm` 套件。
-```shell
-vim scripts/build-qemu-robot-docker.sh
-```
-- 以下是檔案部份內容展示，主要在 `apt-get install -yy` 後加上 `qemu-system-arm`
-```bash
-# Create docker image that can run QEMU and Robot Tests
-Dockerfile=$(cat << EOF
-FROM ${docker_reg}/${DISTRO}
-
-${MIRROR}
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update && apt-get install -yy \
-    debianutils \
-    gawk \
-    git \
-    python2 \
-    python2-dev \
-    python-setuptools \
-    python3 \
-    python3-dev \
-    python3-setuptools \
-    socat \
-    texinfo \
-    wget \
-    gcc \
-    libffi-dev \
-    libssl-dev \
-    xterm \
-    mwm \
-    ssh \
-    vim \
-    iputils-ping \
-    sudo \
-    cpio \
-    unzip \
-    diffstat \
-    expect \
-    curl \
-    build-essential \
-    libdbus-glib-1-2 \
-    libpixman-1-0 \
-    libglib2.0-0 \
-    sshpass \
-    libasound2 \
-    libfdt1 \
-    libpcre3 \
-    libslirp-dev \
-    openssl \
-    libxml2-dev \
-    libxslt-dev \
-    python3-pip \
-    ipmitool \
-    xvfb \
-    rustc \
-    qemu-system-arm
-
-RUN apt-get update -qqy \
-  && apt-get -qqy --no-install-recommends install firefox \
-  && wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/112.0.2/linux-x86_64/en-US/firefox-112.0.2.tar.bz2 \
-  && apt-get -y purge firefox \
-  && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
-  && mv /opt/firefox /opt/firefox-112.0.2 \
-  && ln -fs /opt/firefox-112.0.2/firefox /usr/bin/firefox
-
-ENV HOME ${HOME}
-```
-- 存檔離開
-
-6. 開始編譯 Docker Image 。
+5. 開始編譯 Docker Image 。
 ```shell
 ./scripts/build-qemu-robot-docker.sh
 ```
 
-7. 完成後確認 Docker Image 是否存在。
+6. 完成後確認 Docker Image 是否存在。
 ```shell
 docker images
 ```
@@ -142,10 +77,45 @@ docker images
 > openbmc/ubuntu-robot-qemu        latest         5d73d6c8e6bb   About a minute ago   2.54GB
 > ```
 
+#### QEMU 工具
+
+1. 進入工作目錄。
+```shell
+cd ${HOME}/OpenBMC_Automation
+```
+
+2. 安裝編譯所需套件。
+```shell
+sudo apt install -y build-essential libglib2.0-dev libpixman-1-dev zlib1g-dev git python3-pip ninja-build
+pip install tomli
+```
+
+3. 下載 [qemu](<https://gitlab.com/qemu-project/qemu.git>) 儲存庫。
+```shell
+git clone https://gitlab.com/qemu-project/qemu.git
+```
+
+4. 進入儲存庫目錄。
+```shell
+cd qemu
+```
+
+5. 配置建置目標。（支援 ARM 與 AARCH64 平台）
+```shell
+./configure --target-list=arm-softmmu,arm-linux-user,aarch64-softmmu,aarch64-linux-user --enable-slirp
+```
+
+6. 開始編譯 QEMU 工具。
+```shell
+make -j$(nproc)
+```
+
 ### Test
-使用兩個 Terminal ，一個用於執行模擬器，一個用於執行自動測試。
+
+使用兩個 Terminal ，將會開啟同個 Docker Dontainer ，一個用於執行模擬器，一個用於執行自動測試。
 
 #### Terminal 1：qemu-system-arm
+
 1. 進入工作目錄。
 ```shell
 cd ${HOME}/OpenBMC_Automation
@@ -167,13 +137,14 @@ docker run --name openbmcTest --workdir ${HOME} --volume ${HOME}/OpenBMC_Automat
 
 4. 執行模擬器。
 ```shell
-qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu
+qemu/build/qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-phosphor-image-romulus.static.mtd,format=raw,if=mtd -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostfwd=udp:127.0.0.1:2623-:623,hostname=qemu
 ```
 > - `127.0.0.1:2222` 轉發模擬器連接埠 `22` (用於SSH)
 > - `127.0.0.1:2443` 轉發模擬器連接埠 `443` (用於HTTPS/REDFISH)
 > - `127.0.0.1:2623` 轉發模擬器連接埠 `623` (用於IPMI)
 
 #### Terminal 2：openbmc-test-automation
+
 1. 進入工作目錄。
 ```shell
 cd ${HOME}/OpenBMC_Automation
