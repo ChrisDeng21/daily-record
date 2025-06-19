@@ -195,13 +195,10 @@ chmod 775 qemuast2700a1-evb.sh
 ./qemuast2700a1-evb.sh
 ```
 ### Reference
-[AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
-
-[QEMU/aspeed-2700-family-boards-ast2700-evb](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
-
-[QEMU/booting-the-ast2700-evb-machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>)
-
-[SDK](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
+- [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
+- [QEMU/aspeed-2700-family-boards-ast2700-evb](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
+- [QEMU/booting-the-ast2700-evb-machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>)
+- [SDK](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
 
 ## 中文
 ### 建立日期
@@ -395,10 +392,7 @@ chmod 775 qemuast2700a1-evb.sh
 ./qemuast2700a1-evb.sh
 ```
 ### 參考
-[AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
-
-[QEMU/aspeed-2700-family-boards-ast2700-evb](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
-
-[QEMU/booting-the-ast2700-evb-machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>)
-
-[SDK](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
+- [AspeedTech-BMC/openbmc](<https://github.com/AspeedTech-BMC/openbmc>)
+- [QEMU/aspeed-2700-family-boards-ast2700-evb](<https://www.qemu.org/docs/master/system/arm/aspeed.html#aspeed-2700-family-boards-ast2700-evb>)
+- [QEMU/booting-the-ast2700-evb-machine](<https://www.qemu.org/docs/master/system/arm/aspeed.html#booting-the-ast2700-evb-machine>)
+- [SDK](<https://github.com/AspeedTech-BMC/openbmc/tree/aspeed-master/meta-aspeed-sdk#create-build-environment>)
