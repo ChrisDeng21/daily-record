@@ -54,7 +54,7 @@ sudo apt install -y virtualbox-7.0
 sudo apt install -y virtualbox-7.1
 ```
 ### Reference
-[Link](<https://udhayakumarc.medium.com/installing-virtualbox-7-in-ubuntu-22-363193e5a691>)
+- [Link](<https://udhayakumarc.medium.com/installing-virtualbox-7-in-ubuntu-22-363193e5a691>)
 
 ## 中文
 ### 建立日期
@@ -107,4 +107,4 @@ sudo apt install -y virtualbox-7.0
 sudo apt install -y virtualbox-7.1
 ```
 ### 參考
-[連結](<https://udhayakumarc.medium.com/installing-virtualbox-7-in-ubuntu-22-363193e5a691>)
+- [連結](<https://udhayakumarc.medium.com/installing-virtualbox-7-in-ubuntu-22-363193e5a691>)
