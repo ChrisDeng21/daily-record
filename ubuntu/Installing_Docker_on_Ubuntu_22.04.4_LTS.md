@@ -234,7 +234,7 @@ sudo usermod -aG docker <username>
 > $ sudo usermod -aG docker iris
 10. To apply the new group membership, log out of the server and back in.
 ### Reference
-[Link](<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04>)
+- [Link](<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04>)
 
 ## 中文
 ### 建立日期
@@ -467,4 +467,4 @@ sudo usermod -aG docker <username>
 > $ sudo usermod -aG docker iris
 10. 若要套用新的群組成員身份，請登出伺服器並重新登入。
 ### 參考
-[連結](<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04>)
+- [連結](<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04>)
