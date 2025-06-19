@@ -215,9 +215,9 @@ git config --global core.hooksPath /path/to/global/hooks
 > > Git will automatically use the pre-commit script located in this path for all projects. Whenever `git commit` is executed in any Git project, that pre-commit hook should be triggered.
 > > If a specific project requires customization, you can configure a custom pre-commit hook in that project's `.git/hooks` directory. This will override the `global hooks` pre-commit script.
 ### Reference
-1. [什麼是 Git Hooks？為什麼它這麼萬能？](<https://yhtechnote.com/git-hooks/>)
-2. [如何在執行git commit前自動進行檢查？Git Hooks的基本用法](<https://magiclen.org/git-hooks/>)
-3. [git-pre-commit-cppcheck](<https://github.com/danmar/cppcheck/blob/main/tools/git-pre-commit-cppcheck>)
+- [什麼是 Git Hooks？為什麼它這麼萬能？](<https://yhtechnote.com/git-hooks/>)
+- [如何在執行git commit前自動進行檢查？Git Hooks的基本用法](<https://magiclen.org/git-hooks/>)
+- [git-pre-commit-cppcheck](<https://github.com/danmar/cppcheck/blob/main/tools/git-pre-commit-cppcheck>)
 
 ## 中文
 ### 建立日期
@@ -431,6 +431,6 @@ git config --global core.hooksPath /path/to/global/hooks
 > > Git 會自動在所有專案中使用這個路徑下的 pre-commit。在任何 Git 專案中執行 `git commit`，該 pre-commit 都應該會被執行。
 > > 如果個別專案需要自定義，可以在該專案的 `.git/hooks` 目錄中配置自己的 pre-commit，這樣會覆蓋 `global hooks` 的 pre-commit。
 ### 參考
-1. [什麼是 Git Hooks？為什麼它這麼萬能？](<https://yhtechnote.com/git-hooks/>)
-2. [如何在執行git commit前自動進行檢查？Git Hooks的基本用法](<https://magiclen.org/git-hooks/>)
-3. [git-pre-commit-cppcheck](<https://github.com/danmar/cppcheck/blob/main/tools/git-pre-commit-cppcheck>)
+- [什麼是 Git Hooks？為什麼它這麼萬能？](<https://yhtechnote.com/git-hooks/>)
+- [如何在執行git commit前自動進行檢查？Git Hooks的基本用法](<https://magiclen.org/git-hooks/>)
+- [git-pre-commit-cppcheck](<https://github.com/danmar/cppcheck/blob/main/tools/git-pre-commit-cppcheck>)
