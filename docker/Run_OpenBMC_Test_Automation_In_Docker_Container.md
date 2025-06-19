@@ -228,8 +228,8 @@ robot -v OPENBMC_HOST:127.0.0.1 -v OPENBMC_PASSWORD:0penBmc -v SSH_PORT:2222 -v 
 1. To exit the QEMU emulator: press Ctrl + a, then press the x key.
 2. After running the Robot tests, the generated files output.xml, log.html, and report.html will be saved in the current directory where the command was executed.
 ### Reference
-[Run OpenBMC Test Automation Using Docker](<https://github.com/openbmc/docs/blob/master/testing/run-test-docker.md>) \
-[在 QEMU 中运行 OpenBMC](<https://jia.je/system/2023/08/11/openbmc-qemu/#romulus>)
+- [Run OpenBMC Test Automation Using Docker](<https://github.com/openbmc/docs/blob/master/testing/run-test-docker.md>)
+- [在 QEMU 中运行 OpenBMC](<https://jia.je/system/2023/08/11/openbmc-qemu/#romulus>)
 
 ## 中文
 ### 建立日期
@@ -456,5 +456,5 @@ robot -v OPENBMC_HOST:127.0.0.1 -v OPENBMC_PASSWORD:0penBmc -v SSH_PORT:2222 -v 
 1. 離開 QEMU 模擬器：快捷鍵 Ctrl + a，然後按 x 鍵。
 2. robot 測試後生成的 `output.xml` `log.html` `report.html` 會儲存執行指令的當前目錄位置下。
 ### Reference
-1. [Run OpenBMC Test Automation Using Docker](<https://github.com/openbmc/docs/blob/master/testing/run-test-docker.md>)
-2. [在 QEMU 中运行 OpenBMC](<https://jia.je/system/2023/08/11/openbmc-qemu/#romulus>)
+- [Run OpenBMC Test Automation Using Docker](<https://github.com/openbmc/docs/blob/master/testing/run-test-docker.md>)
+- [在 QEMU 中运行 OpenBMC](<https://jia.je/system/2023/08/11/openbmc-qemu/#romulus>)
