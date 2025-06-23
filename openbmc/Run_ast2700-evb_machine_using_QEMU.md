@@ -1,7 +1,7 @@
 # Run ast2700-evb machine using QEMU
 
 ## Language
-[English](#english) | [中文](#中文)
+[English](#English) | [中文](#中文)
 
 ## English
 ### Created Date
