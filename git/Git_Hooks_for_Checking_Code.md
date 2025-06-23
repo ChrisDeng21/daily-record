@@ -1,7 +1,7 @@
 # Git Hooks for Checking Code
 
 ## Language
-[English](#english) | [中文](#中文)
+[English](#English) | [中文](#中文)
 
 ## English
 ### Created Date
