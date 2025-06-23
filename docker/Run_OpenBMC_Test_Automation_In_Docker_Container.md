@@ -32,7 +32,7 @@ ubuntu-22.04.4-desktop-amd64.iso
 ### Symptom
 None
 ### Cause
-Provide an example that builds `a Docker image with the openbmc-test-automation environment` and the `QEMU Tool`, and demonstrates how to perform testing on the emulator.
+Provide an example that builds [a Docker image with the openbmc-test-automation environment](#a-docker-image-with-the-openbmc-test-automation-environment) and the [QEMU Tool](#qemu-tool), and demonstrates how to perform testing on the emulator.
 ### Solution
 #### Build
 ##### A Docker image with the openbmc-test-automation environment
@@ -260,7 +260,7 @@ ubuntu-22.04.4-desktop-amd64.iso
 ### 症狀
 無
 ### 原因
-提供一種範例，編譯 `具備 openbmc-test-automation 環境的 Docker Image` 和 `QEMU 工具`，並且演示如何對模擬器進行測試。
+提供一種範例，編譯 [具備 openbmc-test-automation 環境的 Docker Image](#具備-openbmc-test-automation-環境的-docker-image) 和 [QEMU 工具](#qemu-工具)，並且演示如何對模擬器進行測試。
 ### 解決方案
 #### 建造
 ##### 具備 openbmc-test-automation 環境的 Docker Image
