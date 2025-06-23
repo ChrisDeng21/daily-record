@@ -1,7 +1,7 @@
 # Installing Docker on Ubuntu 22.04.4 LTS
 
 ## Language
-[English](#english) | [中文](#中文)
+[English](#English) | [中文](#中文)
 
 ## English
 ### Created Date
