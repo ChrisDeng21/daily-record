@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# This tool is only applicable to AspeedTech-BMC v09.06.
+# AspeedTech-BMC v09.07 now supports launching with runqemu.
+#
 
 # [ Base Settings ]
 
