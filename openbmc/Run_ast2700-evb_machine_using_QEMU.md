@@ -6,6 +6,8 @@
 ## English
 ### Created Date
 2025/05/15
+### Update History
+2025/07/11：The new tags `v09.07` now support [runqemu](<https://github.com/AspeedTech-BMC/openbmc/commit/f61b40ac85f6df1517d2f58f2a229b2aa26e8219>). You can directly use the command `runqemu ast2700-default slirp serialstdio` to launch it."
 ### Environment
 ubuntu-22.04.4-desktop-amd64.iso
 > This is console output：
@@ -203,6 +205,8 @@ chmod 775 qemuast2700a1-evb.sh
 ## 中文
 ### 建立日期
 2025/05/15
+### 更新歷史
+2025/07/11：新的 tags `v09.07` 已經支援 [runqemu](<https://github.com/AspeedTech-BMC/openbmc/commit/f61b40ac85f6df1517d2f58f2a229b2aa26e8219>) ，可以直接使用 `runqemu ast2700-default slirp serialstdio` 指令開啟。
 ### 環境
 ubuntu-22.04.4-desktop-amd64.iso
 > 這是控制台輸出：
