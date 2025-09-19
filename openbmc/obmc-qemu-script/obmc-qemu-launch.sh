@@ -187,9 +187,7 @@ EOM
 
 # Prepare the QEMU execution command with virtual devices
 read -r -d '' COMMAND_VIRTUAL_DEVICES << EOM
--drive file=$SCRIPT_DIR/MGMT_VPD.bin,format=raw,id=MGMT_VPD
--device at24c-eeprom,rom-size=512,bus=aspeed.i2c.bus.6,address=0x50,drive=MGMT_VPD
--device tmp421,bus=aspeed.i2c.bus.6,address=0x4c,id=MGMT_Inlet
+
 EOM
 
 COMMAND="$COMMAND_BASE"$'\n'"$COMMAND_VIRTUAL_DEVICES"
