@@ -178,8 +178,8 @@ $QEMU_PATH
 -net nic,netdev=net0
 -netdev user,id=net0,hostfwd=tcp:127.0.0.1:$SSH_PORT-:22,hostfwd=tcp:127.0.0.1:$HTTPS_PORT-:443,hostfwd=udp:127.0.0.1:$IPMI_PORT-:623,tftp=$IMAGE_DIR
 -drive file=$IMAGE_DIR/image-bmc,if=mtd,format=raw
--machine brunello-bmc
--m 2G
+-machine ast2700a1-evb
+-m 1G
 -serial mon:stdio
 -serial null
 -display none
