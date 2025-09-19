@@ -22,7 +22,6 @@ This script assumes the following build structure:
   + bitbake
   + build/\<machine\>/tmp/deploy/images/\<machine\>/
     + image-bmc
-  + meta-aspeed/
   + meta-aspeed-sdk/
   + ...
 
