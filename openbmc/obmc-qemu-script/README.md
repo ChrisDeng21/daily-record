@@ -18,12 +18,12 @@ This tool is intended for developers working with the **OpenBMC fork** or simila
 
 This script assumes the following build structure:
 
-+ <project-root>/
++ \<project-root\>/
   + bitbake
-  + build/<machine>/tmp/deploy/images/<machine>/
+  + build/\<machine\>/tmp/deploy/images/\<machine\>/
     + image-bmc
-  + meta-xxxxxxx/
-  + meta-yyyyyyy/
+  + meta-aspeed/
+  + meta-aspeed-sdk/
   + ...
 
 ## Requirements
