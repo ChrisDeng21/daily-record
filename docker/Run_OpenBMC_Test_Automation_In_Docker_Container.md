@@ -137,7 +137,7 @@ Running all steps in the same container helps avoid the following issues:
 - The complexity of configuring cross-container networking and communication
 - The need to expose additional ports or configure a Docker bridge network
 
-#### Terminal 1：qemu-system-arm
+#### Terminal 1：the emulator (QEMU)
 
 1. Enter the working directory.
 ```shell
@@ -166,7 +166,7 @@ qemu/build/qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-p
 > - `127.0.0.1:2443` Port Forwarding for the Emulator `443` (Used for HTTPS/REDFISH)
 > - `127.0.0.1:2623` Port Forwarding for the Emulator `623` (Used for IPMI)
 
-#### Terminal 2：openbmc-test-automation
+#### Terminal 2：automated tests (openbmc-test-automation)
 
 1. Enter the working directory.
 ```shell
@@ -424,7 +424,7 @@ make -j$(nproc)
 - 跨容器的網路配置與通訊複雜度
 - 額外設定 port 映射或 Docker bridge network 的需求
 
-#### 終端機 1：qemu-system-arm
+#### 終端機 1：模擬器（QEMU）
 
 1. 進入工作目錄。
 ```shell
@@ -453,7 +453,7 @@ qemu/build/qemu-system-arm -m 256 -M romulus-bmc -nographic -drive file=./obmc-p
 > - `127.0.0.1:2443` 轉發模擬器連接埠 `443` (用於HTTPS/REDFISH)
 > - `127.0.0.1:2623` 轉發模擬器連接埠 `623` (用於IPMI)
 
-#### 終端機 2：openbmc-test-automation
+#### 終端機 2：自動化測試（openbmc-test-automation）
 
 1. 進入工作目錄。
 ```shell
