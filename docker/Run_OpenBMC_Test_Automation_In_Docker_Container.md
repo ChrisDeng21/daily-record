@@ -125,7 +125,17 @@ make -j$(nproc)
 ---
 
 ### Test
-Use two terminals to open the same Docker container — one for running the emulator and the other for executing automated tests.
+We use two terminals to access the **same Docker container** — one for running the emulator (QEMU), and the other for executing automated tests (openbmc-test-automation).
+
+The reasons for this design are as follows:
+
+- QEMU uses localhost port forwarding to provide virtual BMC services. The test tools must run in the same container environment to successfully connect via `localhost`.
+- All files and tools reside within the same directory structure. Running everything inside a single container avoids issues related to incorrect paths or file synchronization.
+
+Running all steps in the same container helps avoid the following issues:
+
+- The complexity of configuring cross-container networking and communication
+- The need to expose additional ports or configure a Docker bridge network
 
 #### Terminal 1：qemu-system-arm
 
@@ -402,7 +412,17 @@ make -j$(nproc)
 ---
 
 ### 測試
-使用兩個終端機，將會開啟同個 Docker Dontainer ，一個用於執行模擬器，一個用於執行自動測試。
+我們使用兩個終端機開啟**同一個 Docker container**，一個用來執行模擬器（QEMU），另一個用來執行自動化測試（openbmc-test-automation）。
+
+這樣設計的原因如下：
+
+- QEMU 使用 localhost 的 port forwarding 來提供虛擬 BMC 的服務，測試工具必須在相同的容器環境中，才能透過 `localhost` 成功連線。
+- 所有檔案與工具都位於相同的目錄結構中，在同一個容器中執行可以避免路徑錯誤與檔案同步問題。
+
+透過在同一個 container 中執行所有步驟，可以避免以下問題：
+
+- 跨容器的網路配置與通訊複雜度
+- 額外設定 port 映射或 Docker bridge network 的需求
 
 #### 終端機 1：qemu-system-arm
 
